@@ -94,14 +94,14 @@ exports.signTokenKeyWithUserId = async(userId) => {
 exports.paginate = async(model, query = {}, page = 1, limit = 10, options = {}) => {
   try {
     const skip = (page - 1) * limit;
-    query = { ...query, active: true, delete: false };
+    query = { ...query, active: true, deleted: false };
     const documents = await model.find(query)
       .skip(skip)
       .limit(limit)
       .sort(options.sort || {})
       .populate(options.populate || '')
       .exec();
-
+    
     const totalDoc = await model.countDocuments(query);
     const totalPages = Math.ceil(totalDoc / limit);
 
