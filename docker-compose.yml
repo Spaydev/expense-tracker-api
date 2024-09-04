@@ -1,0 +1,8 @@
+version: "3.8"
+services:
+  api:
+    container_name: EXPENSE_API
+    build: .
+    restart: always
+    ports:
+      - "3001:3001"
