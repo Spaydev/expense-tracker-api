@@ -25,7 +25,8 @@ exports.getMany = async (req, reply) => {
   try {   
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
-    const { pagination , documents } = await paginate(CategoryModel, {}, page, limit, {});
+    const query = {}
+    const { pagination , documents } = await paginate(CategoryModel, query, page, limit, {});
     return reply.code(200).send({ 
       success:true,
       pagination,

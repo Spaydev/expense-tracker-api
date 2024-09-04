@@ -26,7 +26,7 @@ async function startServer() {
   await fastify.register(require('@fastify/swagger'), {
     openapi: {
         info: {
-        title: 'GO BASE API',
+        title: 'Swagger',
         description: 'Testing API Docs',
         version: '0.0.1',
         },
