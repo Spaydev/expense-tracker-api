@@ -86,7 +86,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/auth/refreshToken?refreshToken=eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7Il9pZCI6IjY2ZDg2OTRhN2JjNjVhZTkwMzY1MmQyYSIsIm5pY2tOYW1lIjoiU3BheSIsImVtYWlsIjoic3BheWRldnZAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkUDFlcWxqQU9aYjBKNWVNNEhxUy5SZVRJREIzSE1nUlhObS56RVl6MnRWdEZpWEk5dkI3d1ciLCJyb2xlIjoidXNlciIsImFjdGl2ZSI6dHJ1ZSwiZGVsZXRlZCI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjQtMDktMDRUMTQ6MDY6MDIuNjEwWiIsInVwZGF0ZWRBdCI6IjIwMjQtMDktMDRUMTQ6MDY6MDIuNjEwWiIsIl9fdiI6MH0sImlhdCI6MTcyNTQ4MTg2NSwiZXhwIjoxNzI1NTY4MjY1fQ.ATPYf3rkkA9vOXs7c7GZSU45WPDegyG9lxQRPqWC7gTlCe7RZv_fMejzK3Cp3RB4oL0jPUrVKwXgOgoZIz2HS98jAastpXchCpsVrvTGqkwZ3T_Vx8XFRA7VrhH6EDbIvsTmrecuvky3zU6dRKmsjul9EbXzyYdkC3MyfRqdz8G9GIaQ",
+							"raw": "{{URL}}/api/v1/auth/refreshToken?refreshToken=\"\"",
 							"host": [
 								"{{URL}}"
 							],
@@ -99,7 +99,7 @@
 							"query": [
 								{
 									"key": "refreshToken",
-									"value": "eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7Il9pZCI6IjY2ZDg2OTRhN2JjNjVhZTkwMzY1MmQyYSIsIm5pY2tOYW1lIjoiU3BheSIsImVtYWlsIjoic3BheWRldnZAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkUDFlcWxqQU9aYjBKNWVNNEhxUy5SZVRJREIzSE1nUlhObS56RVl6MnRWdEZpWEk5dkI3d1ciLCJyb2xlIjoidXNlciIsImFjdGl2ZSI6dHJ1ZSwiZGVsZXRlZCI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjQtMDktMDRUMTQ6MDY6MDIuNjEwWiIsInVwZGF0ZWRBdCI6IjIwMjQtMDktMDRUMTQ6MDY6MDIuNjEwWiIsIl9fdiI6MH0sImlhdCI6MTcyNTQ4MTg2NSwiZXhwIjoxNzI1NTY4MjY1fQ.ATPYf3rkkA9vOXs7c7GZSU45WPDegyG9lxQRPqWC7gTlCe7RZv_fMejzK3Cp3RB4oL0jPUrVKwXgOgoZIz2HS98jAastpXchCpsVrvTGqkwZ3T_Vx8XFRA7VrhH6EDbIvsTmrecuvky3zU6dRKmsjul9EbXzyYdkC3MyfRqdz8G9GIaQ"
+									"value": "\"\""
 								}
 							]
 						}
