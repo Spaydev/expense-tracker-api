@@ -2,6 +2,8 @@ const fs = require('fs');
 const bcrypt = require('bcrypt');
 const UserModel = require('../models/user.model')
 const PRIVATE_KEY = fs.readFileSync('private-key.pem', 'utf8');
+const PUBLIC_KEY = fs.readFileSync('public-key.pem', 'utf8');
+
 const fastify = require('fastify');
 const jwt = require('jsonwebtoken');
 
@@ -44,36 +46,6 @@ exports.checkUserPassword = async(email , password) => {
         }
     }
 }
-
-exports.signTokenKey = async(payload) => {
-  try {
-    const user = await UserModel.findById(userId)
-    const token = await fastify.jwt.sign({ payload:user }, PRIVATE_KEY, { algorithm: 'ES512' , expiresIn:'60m' });
-    const refreshToken  = await fastify.jwt.sign({ payload:user }, PRIVATE_KEY, { algorithm: 'ES512' , expiresIn:'5d' });
-    return {
-      token,
-      refreshToken,
-    }
-  } catch (error) {
-      console.log(error);
-  }
-};
-exports.refreshToken = async(refreshToken) => {
-  let success = false
-  let message = '' 
-  try {    
-      const decoded = jwt.verify(refreshToken, publicKey, { algorithms: ['ES512'] });
-      const userId = decoded.payload._id
-      return await signTokenKeyWithUserId(userId);
-  } catch (err) {
-      success = false, 
-      message = "Invalid refresh token"
-  }
-  return {
-      success,
-      message
-  }
-};
 exports.signTokenKeyWithUserId = async(userId) => {
   try {
       const user = await UserModel.findById(userId)
@@ -90,7 +62,21 @@ exports.signTokenKeyWithUserId = async(userId) => {
       }
   }
 };
-
+exports.refreshToken = async(oldToken) => {
+  try {    
+      const decoded = jwt.verify(oldToken, PUBLIC_KEY, { algorithms: ['ES512'] });
+      const userId = decoded.payload._id     
+      const user = await UserModel.findById(userId)
+      const token =  jwt.sign({ payload:user }, PRIVATE_KEY, { algorithm: 'ES512' , expiresIn:'1d' });
+      const newRefreshToken  =  jwt.sign({ payload:user }, PRIVATE_KEY, { algorithm: 'ES512' , expiresIn:'5d' }); 
+      return {
+        token,
+        refreshToken:newRefreshToken
+      }
+  } catch (err) {
+      console.log(err);
+  }
+};
 exports.paginate = async(model, query = {}, page = 1, limit = 10, options = {}) => {
   try {
     const skip = (page - 1) * limit;
@@ -154,4 +140,5 @@ exports.getDateRange = async(startDate, endDate) => {
     endDate: endDate ? new Date(endDate) : today
   };
 }
+
 

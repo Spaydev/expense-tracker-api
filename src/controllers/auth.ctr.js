@@ -1,7 +1,8 @@
 const crypto = require("crypto");
 const fs = require("fs");
 const UserModel = require("../models/user.model");
-const { hashPassword , checkUserPassword , signTokenKeyWithUserId , signTokenKey } = require("../utils/common.utils");
+const { hashPassword , checkUserPassword , signTokenKeyWithUserId , signTokenKey , refreshToken } = require("../utils/common.utils");
+
 exports.login = async (req, reply) => {
   try {
     const { email , password } = req.body
@@ -62,6 +63,37 @@ exports.register = async (req, reply) => {
         },
       });
     }
+  } catch (error) {
+    console.log(error);
+    reply.code(500).send({
+      success: false,
+      errors: [
+        {
+          code: 500,
+          message: "Server 500 Error",
+        },
+      ],
+    });
+  }
+};
+
+exports.authRefreshToken = async (req, reply) => {
+  try {
+    const token = req.query.refreshToken || ''
+    const getNewToken = await refreshToken(token);
+    if(getNewToken && getNewToken.token){
+      return reply.code(200).send({ 
+        success:true,
+        data:getNewToken ,
+      });
+    }else{
+      return reply.code(400).send({ 
+        success:false,
+        data:{} ,
+        message:"Invalid refresh token"
+      });
+    }
+    
   } catch (error) {
     console.log(error);
     reply.code(500).send({

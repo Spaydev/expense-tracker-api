@@ -6,8 +6,10 @@ const { registerSchema ,loginSchema } = require('./schema/auth.schema');
 async function AuthRoutes(fastify, options ) {
   fastify.post('/login',{schema: loginSchema } , authCtr.login);
   fastify.post('/register',{schema: registerSchema }, authCtr.register);
-  fastify.post('/generate_ec_keypair',{ preHandler: [ ] },authCtr.generateECKeyPair)
-  fastify.get('/generate_key_random',{ preHandler: []},authCtr.generateKeyRandom);
+  fastify.get('/refreshToken',{ preHandler: [] }, authCtr.authRefreshToken);
+
+  // fastify.post('/generate_ec_keypair',{ preHandler: [ ] },authCtr.generateECKeyPair)
+  // fastify.get('/generate_key_random',{ preHandler: []},authCtr.generateKeyRandom);
 }
 
 module.exports = AuthRoutes;

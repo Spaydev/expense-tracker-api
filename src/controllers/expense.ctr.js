@@ -4,7 +4,8 @@ const { default: mongoose } = require('mongoose');
 const { ObjectId } = mongoose.Types
 exports.getOneById = async (req, reply) => {
   try {
-    const result =  await ExpenseModel.findById(req.params.id);
+    const userId = req.user.payload._id
+    const result =  await ExpenseModel.findOne({_id:req.params.id , userId:userId , active:true , deleted:false});
     return reply.code(200).send({ 
       success:true,
       data: result
@@ -134,7 +135,8 @@ exports.create = async (req, reply) => {
 };
 exports.update = async (req, reply) => {
   try {   
-    const updated = await ExpenseModel.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true } );
+    const userId = req.user.payload._id
+    const updated = await ExpenseModel.findOneAndUpdate({ _id:req.params.id , userId:userId }, req.body, { new: true, runValidators: true } );
     return reply.code(200).send({ 
       success:true,
       data: updated
@@ -154,7 +156,8 @@ exports.update = async (req, reply) => {
 };
 exports.delete = async (req, reply) => {
   try {
-    const deleted = await ExpenseModel.findByIdAndUpdate(req.params.id, { $set:{ active:false , deleted:true }}, { new: true, runValidators: true } );
+    const userId = req.user.payload._id
+    const deleted = await ExpenseModel.findOneAndUpdate({ _id:req.params.id , userId:userId }, { $set:{ active:false , deleted:true }}, { new: true, runValidators: true } );
     return reply.code(200).send({ 
       success:true,
       data: deleted
