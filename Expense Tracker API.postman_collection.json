@@ -11,57 +11,6 @@
 			"name": "auth",
 			"item": [
 				{
-					"name": "key",
-					"item": [
-						{
-							"name": "generate_ec_keypair",
-							"request": {
-								"method": "POST",
-								"header": [],
-								"url": {
-									"raw": "{{URL}}/api/v1/auth/generate_ec_keypair",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"auth",
-										"generate_ec_keypair"
-									]
-								}
-							},
-							"response": []
-						},
-						{
-							"name": "generateKeyRandom",
-							"request": {
-								"method": "GET",
-								"header": [],
-								"url": {
-									"raw": "{{URL}}/api/v1/auth/generate_key_random?length=32",
-									"host": [
-										"{{URL}}"
-									],
-									"path": [
-										"api",
-										"v1",
-										"auth",
-										"generate_key_random"
-									],
-									"query": [
-										{
-											"key": "length",
-											"value": "32"
-										}
-									]
-								}
-							},
-							"response": []
-						}
-					]
-				},
-				{
 					"name": "login",
 					"request": {
 						"method": "POST",
@@ -97,7 +46,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\":\"spaydevv@gmail.com\",\r\n    \"nickName\":\"Spay\",\r\n    \"password\":\"testtestza**\"\r\n}",
+							"raw": "{\r\n    \"email\":\"cakeki@gmail.com\",\r\n    \"nickName\":\"cakeki\",\r\n    \"password\":\"testtestza**\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -114,6 +63,44 @@
 								"v1",
 								"auth",
 								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refresh token",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/v1/auth/refreshToken?refreshToken=eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7Il9pZCI6IjY2ZDg2OTRhN2JjNjVhZTkwMzY1MmQyYSIsIm5pY2tOYW1lIjoiU3BheSIsImVtYWlsIjoic3BheWRldnZAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkUDFlcWxqQU9aYjBKNWVNNEhxUy5SZVRJREIzSE1nUlhObS56RVl6MnRWdEZpWEk5dkI3d1ciLCJyb2xlIjoidXNlciIsImFjdGl2ZSI6dHJ1ZSwiZGVsZXRlZCI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjQtMDktMDRUMTQ6MDY6MDIuNjEwWiIsInVwZGF0ZWRBdCI6IjIwMjQtMDktMDRUMTQ6MDY6MDIuNjEwWiIsIl9fdiI6MH0sImlhdCI6MTcyNTQ4MTg2NSwiZXhwIjoxNzI1NTY4MjY1fQ.ATPYf3rkkA9vOXs7c7GZSU45WPDegyG9lxQRPqWC7gTlCe7RZv_fMejzK3Cp3RB4oL0jPUrVKwXgOgoZIz2HS98jAastpXchCpsVrvTGqkwZ3T_Vx8XFRA7VrhH6EDbIvsTmrecuvky3zU6dRKmsjul9EbXzyYdkC3MyfRqdz8G9GIaQ",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"refreshToken"
+							],
+							"query": [
+								{
+									"key": "refreshToken",
+									"value": "eyJhbGciOiJFUzUxMiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7Il9pZCI6IjY2ZDg2OTRhN2JjNjVhZTkwMzY1MmQyYSIsIm5pY2tOYW1lIjoiU3BheSIsImVtYWlsIjoic3BheWRldnZAZ21haWwuY29tIiwicGFzc3dvcmQiOiIkMmIkMTAkUDFlcWxqQU9aYjBKNWVNNEhxUy5SZVRJREIzSE1nUlhObS56RVl6MnRWdEZpWEk5dkI3d1ciLCJyb2xlIjoidXNlciIsImFjdGl2ZSI6dHJ1ZSwiZGVsZXRlZCI6ZmFsc2UsImNyZWF0ZWRBdCI6IjIwMjQtMDktMDRUMTQ6MDY6MDIuNjEwWiIsInVwZGF0ZWRBdCI6IjIwMjQtMDktMDRUMTQ6MDY6MDIuNjEwWiIsIl9fdiI6MH0sImlhdCI6MTcyNTQ4MTg2NSwiZXhwIjoxNzI1NTY4MjY1fQ.ATPYf3rkkA9vOXs7c7GZSU45WPDegyG9lxQRPqWC7gTlCe7RZv_fMejzK3Cp3RB4oL0jPUrVKwXgOgoZIz2HS98jAastpXchCpsVrvTGqkwZ3T_Vx8XFRA7VrhH6EDbIvsTmrecuvky3zU6dRKmsjul9EbXzyYdkC3MyfRqdz8G9GIaQ"
+								}
 							]
 						}
 					},
@@ -211,7 +198,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"ค่าเดินทาง\"\r\n}",
+							"raw": "{\r\n    \"name\":\"ค่าเดินทาง2\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -342,7 +329,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URL}}/api/v1/expense/getOneById/66d89f4e5529bf6e9b5fc50c",
+							"raw": "{{URL}}/api/v1/expense/getOneById/66d8b2be8a87c917cacb2824",
 							"host": [
 								"{{URL}}"
 							],
@@ -351,7 +338,7 @@
 								"v1",
 								"expense",
 								"getOneById",
-								"66d89f4e5529bf6e9b5fc50c"
+								"66d8b2be8a87c917cacb2824"
 							]
 						}
 					},
@@ -393,7 +380,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"อาหาร\",\r\n    \"amount\": 1000,\r\n    \"date\": \"2024-12-13T20:20:39\",\r\n    \"categoryId\":\"\",\r\n    \"notes\": \"หิวมากๆเลย\"\r\n}",
+							"raw": "{\r\n    \"title\":\"มื้อ เช้า1111\",\r\n    \"amount\":190,\r\n    \"date\":\"2024-09-02T00:00:00\",\r\n    \"categoryId\":\"66d88d17f8cb0ed1270a083c\",\r\n    \"notes\":\"กินอิ่มเลยยยตอนเช้า\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -401,7 +388,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{URL}}/api/v1/expense/update/66d89f4e5529bf6e9b5fc50c",
+							"raw": "{{URL}}/api/v1/expense/update/66d8b2be8a87c917cacb2824",
 							"host": [
 								"{{URL}}"
 							],
@@ -410,7 +397,7 @@
 								"v1",
 								"expense",
 								"update",
-								"66d89f4e5529bf6e9b5fc50c"
+								"66d8b2be8a87c917cacb2824"
 							]
 						}
 					},
